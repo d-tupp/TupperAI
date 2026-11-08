@@ -1,0 +1,203 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TupperAi · Ask about the Tupper family</title><meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:#07080b;color:#e9eaee;font:15px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;height:100dvh;display:flex;flex-direction:column;overflow:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:-30%;z-index:-1;background:radial-gradient(40% 35% at 30% 30%,rgba(90,120,255,.22),transparent 70%),radial-gradient(35% 30% at 72% 40%,rgba(180,90,255,.18),transparent 70%),radial-gradient(40% 35% at 50% 85%,rgba(40,200,190,.10),transparent 70%);filter:blur(30px);animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(0,0) rotate(0)}100%{transform:translate(-4%,3%) rotate(8deg)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+header{display:flex;gap:8px;align-items:center;padding:12px 16px;flex-wrap:wrap;backdrop-filter:blur(14px);background:rgba(7,8,11,.55);border-bottom:1px solid rgba(255,255,255,.06)}
+h1{font-size:18px;font-weight:800;margin:0 auto 0 0;letter-spacing:-.3px;display:flex;align-items:center}.logo{margin-right:8px}
+.logo{width:26px;height:26px;border-radius:8px;background:conic-gradient(from 210deg,#5b7cff,#b46bff,#3fd0c9,#5b7cff);display:grid;place-items:center;font-size:13px;color:#fff;font-weight:800;box-shadow:0 0 18px rgba(120,110,255,.5)}
+h1 span,.grad{background:linear-gradient(90deg,#8fb0ff,#c79bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+select,header button{background:rgba(255,255,255,.05);color:#dfe1e7;border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:7px 14px;font:500 13px Inter,sans-serif;cursor:pointer;transition:background .2s}
+select{max-width:220px;appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,#999 50%),linear-gradient(135deg,#999 50%,transparent 50%);background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat}
+select option{background:#15161b}
+header button:hover,select:hover{background:rgba(255,255,255,.1)}button:disabled{opacity:.45;cursor:default}
+#bar{height:3px;background:transparent}#fill{height:100%;width:0;background:linear-gradient(90deg,#5b7cff,#b46bff,#3fd0c9);box-shadow:0 0 12px rgba(140,120,255,.8);border-radius:0 3px 3px 0;transition:width .3s}
+#status{font-size:12px;color:#8a8d98;padding:6px 16px;min-height:22px;text-align:center}
+main{flex:1;overflow-y:auto;padding:16px}.wrap{max-width:780px;margin:auto}
+.msg{margin:16px 0;white-space:pre-wrap;word-wrap:break-word;animation:up .35s ease both}
+.user{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.06);border-radius:20px 20px 6px 20px;padding:10px 16px;margin-left:auto;max-width:85%;width:fit-content}
+.bot{padding:2px}
+.hero{text-align:center;margin-top:9vh;animation:up .6s ease both}
+.hero .mark{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;font-size:30px;box-shadow:0 0 50px rgba(130,110,255,.55)}
+.hero h2{font-size:clamp(34px,7vw,56px);font-weight:800;letter-spacing:-1.5px;margin:0 0 8px;line-height:1.05}
+.hero p{color:#9a9daa;margin:0 auto 30px;max-width:520px;font-size:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;text-align:left}
+.chip{padding:16px 18px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);color:#d9dbe2;cursor:pointer;font-size:14px;font-weight:500;transition:transform .2s,background .2s,border-color .2s;animation:up .5s ease both}
+.chip::before{content:"✦";display:block;color:#a99cff;margin-bottom:6px;font-size:13px}
+.chip:hover{transform:translateY(-2px);background:rgba(255,255,255,.08);border-color:rgba(160,140,255,.4)}
+.chip:nth-child(2){animation-delay:.06s}.chip:nth-child(3){animation-delay:.12s}.chip:nth-child(4){animation-delay:.18s}.chip:nth-child(5){animation-delay:.24s}
+form{padding:10px 16px calc(14px + env(safe-area-inset-bottom))}
+.in{max-width:780px;margin:auto;display:flex;align-items:flex-end;gap:8px;background:rgba(22,23,29,.75);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:8px 8px 8px 20px;box-shadow:0 10px 40px rgba(0,0,0,.4);transition:border-color .2s,box-shadow .2s}
+.in:focus-within{border-color:rgba(150,130,255,.5);box-shadow:0 0 0 4px rgba(130,110,255,.12),0 10px 40px rgba(0,0,0,.4)}
+textarea{flex:1;background:none;border:0;color:#eee;font:16px Inter,sans-serif;resize:none;outline:none;max-height:160px;padding:10px 0}
+.send{border-radius:50%;width:44px;height:44px;padding:0;border:0;background:linear-gradient(135deg,#6d8bff,#b46bff);color:#fff;font-size:20px;font-weight:700;cursor:pointer;flex:none;transition:transform .15s}
+.send:hover{transform:scale(1.06)}
+.warn{background:rgba(255,80,80,.08);border:1px solid rgba(255,90,90,.3);padding:16px;border-radius:16px;margin-top:8vh}
+.foot{text-align:center;font-size:11px;color:#5d606b;margin-top:8px}
+@media(max-width:600px){header{padding:10px 12px;flex-wrap:nowrap;gap:6px}h1{font-size:16px}select{max-width:118px;padding:6px 24px 6px 10px}header button{padding:6px 10px}.hero{margin-top:4vh}.grid{grid-template-columns:1fr 1fr}.chip{padding:12px 14px;font-size:13px}.chip:nth-child(5){grid-column:span 2}}
+
+.tabs{display:flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);margin-right:auto;margin-left:14px}
+.tabs button{border:0!important;background:none!important;padding:6px 14px!important}.tabs button.on{background:rgba(255,255,255,.12)!important;color:#fff}
+h1{margin:0!important}
+#tree{flex:1;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#0b1220}#tree[hidden]{display:none}
+#tree::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(90,140,220,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(90,140,220,.07) 1px,transparent 1px),linear-gradient(rgba(90,140,220,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(90,140,220,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;pointer-events:none}
+.tbar{position:relative;z-index:3;display:flex;gap:10px;padding:10px 16px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:rgba(9,15,28,.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(120,170,255,.12)}
+.pills{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.tact{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pills button,.pills select,.tact button,.tact input,.zb button{background:rgba(120,170,255,.06);color:#cfe0ff;border:1px solid rgba(120,170,255,.18);border-radius:999px;padding:7px 14px;font:500 13px Inter,sans-serif;cursor:pointer}
+.pills button.on,.tact button.on{background:linear-gradient(135deg,rgba(60,200,255,.25),rgba(120,110,255,.25));border-color:rgba(80,210,255,.6);color:#fff;box-shadow:0 0 14px rgba(60,200,255,.25)}
+.pills select option{background:#101a2e}.tact input{width:200px;outline:none;cursor:text}
+#tv{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab}#tv:active{cursor:grabbing}
+#tc{position:absolute;left:0;top:0;transform-origin:0 0}.tsvg{position:absolute;left:0;top:0;overflow:visible}
+.lnk{fill:none;stroke:#3fd6ff;stroke-width:2;filter:drop-shadow(0 0 4px rgba(63,214,255,.7));opacity:.75}.lnk.dim{opacity:.1;filter:none}
+.cpl{stroke:#3fd6ff;stroke-width:2;stroke-dasharray:4 5;opacity:.6}
+.glab{position:absolute;left:14px;width:200px;padding:8px 0 8px 12px;border-left:3px solid #3fd6ff}.glab b{display:block;font-size:12px;letter-spacing:1.4px;color:#9fd8ff;font-weight:700}.glab span{font-size:12px;color:#6c86ad}
+.gline{position:absolute;left:0;height:1px;background:linear-gradient(90deg,rgba(63,214,255,.18),transparent 70%)}
+.tn{position:absolute;width:230px;height:78px;display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:linear-gradient(180deg,#152238,#111b2e);border:1px solid rgba(120,170,255,.22);box-shadow:0 8px 24px rgba(0,0,0,.45);cursor:pointer;transition:transform .15s,box-shadow .2s,opacity .2s;user-select:none}
+.tn:hover{transform:translateY(-2px);border-color:rgba(63,214,255,.6);box-shadow:0 0 0 1px rgba(63,214,255,.4),0 10px 30px rgba(0,0,0,.5)}
+.tn.sel{border-color:#3fd6ff;box-shadow:0 0 0 2px #3fd6ff,0 0 34px rgba(63,214,255,.45)}
+.tn.sp{border:1.5px dashed rgba(150,180,230,.45);background:rgba(17,27,46,.75)}.tn.dim{opacity:.16}
+.av{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:700 16px Inter;color:#fff;border:2px solid rgba(255,255,255,.18);overflow:hidden}.av img,.bav img{width:100%;height:100%;object-fit:cover}
+.tx{min-width:0;flex:1}.tx b{display:block;font-size:13.5px;font-weight:600;color:#eef4ff;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.tx small{color:#88a0c4;font-size:12px}.tn.lv .tx small{color:#6fe0a6}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;flex:none}.dot.confirmed{background:#3ddc84;box-shadow:0 0 8px #3ddc84}.dot.likely{background:#f5c542;box-shadow:0 0 8px #f5c542}.dot.speculative{background:#ff5a5a;box-shadow:0 0 8px #ff5a5a}
+.tn .dot{position:absolute;top:10px;right:10px}
+.tag{position:absolute;top:-10px;left:14px;font:600 10.5px Inter;font-style:normal;color:#bcd2f5;background:#1b2a45;border:1px solid rgba(120,170,255,.3);padding:1px 8px;border-radius:999px}
+.tg{position:absolute;width:24px;height:24px;border-radius:50%;border:1px solid rgba(63,214,255,.6);background:#0d1830;color:#9fe6ff;font:700 13px Inter;cursor:pointer;padding:0;box-shadow:0 0 10px rgba(63,214,255,.35);z-index:1}
+#tp{position:absolute;right:14px;top:66px;bottom:84px;width:370px;max-width:calc(100% - 28px);background:rgba(12,20,36,.94);backdrop-filter:blur(20px);border:1px solid rgba(120,170,255,.2);border-radius:20px;z-index:4;box-shadow:0 20px 60px rgba(0,0,0,.6);animation:up .3s ease both;display:flex;flex-direction:column;overflow:hidden}
+#tp[hidden]{display:none}#tpb{overflow-y:auto;padding:22px 20px 12px;flex:1}
+#tpx{position:absolute;right:12px;top:12px;background:rgba(255,255,255,.07);border:0;color:#ccc;border-radius:50%;width:30px;height:30px;cursor:pointer;z-index:2}
+.phd{text-align:center;padding-bottom:14px;border-bottom:1px solid rgba(120,170,255,.12)}.bav{width:92px;height:92px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;font:700 32px Inter;color:#fff;border:3px solid rgba(63,214,255,.5);box-shadow:0 0 30px rgba(63,214,255,.3);overflow:hidden}
+.phd h3{margin:0 0 4px;font-size:20px;letter-spacing:-.3px}.pid{color:#7f95b8;font-size:12px;margin-bottom:10px}
+.badge{display:inline-block;font:700 11px Inter;letter-spacing:1px;padding:4px 10px;border-radius:999px}.badge.confirmed{color:#3ddc84;background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.35)}.badge.likely{color:#f5c542;background:rgba(245,197,66,.12);border:1px solid rgba(245,197,66,.35)}.badge.speculative{color:#ff6b6b;background:rgba(255,90,90,.12);border:1px solid rgba(255,90,90,.35)}
+.ps{padding:14px 0;border-bottom:1px solid rgba(120,170,255,.08)}.ps h4{margin:0 0 8px;font-size:11px;letter-spacing:1.6px;color:#5fc8f0}.ps p{margin:0 0 6px;font-size:13.5px;color:#cfd9ea;line-height:1.55}
+.ps ul{margin:0;padding-left:18px;font-size:13.5px;color:#cfd9ea}.ps li{margin-bottom:6px}.ps li small{display:block;color:#6f86a8;font-size:11.5px}.ps ul.src li{font-size:12.5px;color:#9fb2cf}
+.kv{font-size:13.5px;margin-bottom:4px;color:#dfe8f7}.kv span{display:inline-block;width:52px;color:#7f95b8}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips a{padding:5px 11px;border-radius:999px;background:rgba(120,170,255,.08);border:1px solid rgba(120,170,255,.2);cursor:pointer;font-size:12.5px;color:#e3ecfb}.chips a span{color:#6fb9e0;font-size:10.5px;margin-right:5px;text-transform:uppercase;letter-spacing:.5px}.chips a:hover{border-color:#3fd6ff}
+.priv{margin-top:14px;color:#9fe0bf;font-size:13px;background:rgba(61,220,132,.08);border:1px solid rgba(61,220,132,.2);padding:10px 12px;border-radius:12px}.cred{font-size:11px;color:#6f86a8}
+.ask{margin:10px 16px 16px;border:0;border-radius:14px;padding:12px;background:linear-gradient(135deg,#2bb8ff,#7a6bff);color:#fff;font:600 14px Inter;cursor:pointer;box-shadow:0 6px 24px rgba(60,160,255,.35)}
+.legend{position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:8px 16px;background:rgba(9,15,28,.9);border-top:1px solid rgba(120,170,255,.12);font-size:12px;color:#9fb2cf}
+.legend span{display:flex;align-items:center;gap:6px}.legend .sep{flex:1}.legend .hint{color:#6f86a8}.zb{gap:4px!important}.zb button{padding:4px 12px}
+.privnote{flex-basis:100%;font-size:11px;color:#5d7396}
+html,body{overscroll-behavior:none}body.treemode{touch-action:none}
+.zctl{position:absolute;right:16px;bottom:70px;z-index:3;display:flex;flex-direction:column;gap:8px}.zctl button{width:48px;height:48px;border-radius:14px;border:1px solid rgba(63,214,255,.4);background:rgba(12,22,40,.92);color:#bfefff;font:600 22px Inter;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.5),0 0 12px rgba(63,214,255,.15);backdrop-filter:blur(10px)}.zctl button:hover{border-color:#3fd6ff;color:#fff}.zctl button:active{transform:scale(.94)}
+.mmw{position:absolute;left:16px;bottom:70px;z-index:3;width:200px;height:120px;border-radius:12px;background:rgba(8,14,26,.88);border:1px solid rgba(63,214,255,.3);overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.5);cursor:pointer;touch-action:none}#mm{width:100%;height:100%;display:block}#mmv{position:absolute;border:1.5px solid #3fd6ff;background:rgba(63,214,255,.1);border-radius:3px;pointer-events:none}
+#tp:not([hidden])~.zctl{right:400px}
+body.treemode header{padding:8px 16px}
+body.treemode #model,body.treemode #load,body.treemode #new,body.treemode #bar{display:none}
+@media(max-width:700px){.tabs{margin-left:6px}.tabs button{padding:5px 9px!important}h1 span:not(.logo){display:none}.tbar{padding:8px 10px;gap:6px}.tact input{width:100%;flex-basis:100%}.tact button,.pills button,.pills select{padding:6px 10px;font-size:12px}#tp{left:8px;right:8px;top:auto;bottom:8px;width:auto;max-width:none;max-height:64%}.legend .hint{display:none}.mmw{width:130px;height:80px;left:10px;bottom:62px}.zctl{right:10px;bottom:62px}.zctl button{width:44px;height:44px}#tp:not([hidden])~.zctl,#tp:not([hidden])~.mmw{display:none}}
+</style></head><body>
+<header><h1><span class="logo">T</span>Tupper<span>Ai</span></h1><div class="tabs"><button data-tab="chat" class="on">💬 Chat</button><button data-tab="tree">🌳 Tree</button></div>
+<select id="model">
+
+<option value="auto">Auto (best for this device)</option>
+<option value="Llama-3.1-8B-Instruct-q4f16_1-MLC">Llama 3.1 8B (smartest, ~5GB, strong PC)</option>
+<option value="Qwen2.5-7B-Instruct-q4f16_1-MLC">Qwen 2.5 7B (~5GB, strong PC)</option>
+<option value="Llama-3.2-3B-Instruct-q4f16_1-MLC">Llama 3.2 3B (balanced, ~2GB)</option>
+<option value="Qwen2.5-3B-Instruct-q4f16_1-MLC">Qwen 2.5 3B (~2GB)</option>
+<option value="Llama-3.2-1B-Instruct-q4f16_1-MLC">Llama 3.2 1B (~0.9GB)</option>
+<option value="Qwen2.5-0.5B-Instruct-q4f16_1-MLC">Qwen 2.5 0.5B (fast, ~0.4GB)</option>
+</select><button id="load">Load</button><button id="new">＋ New</button></header>
+<div id="bar"><div id="fill"></div></div><div id="status">Ask about the Tupper family. Free AI runs entirely in your browser.</div>
+<section id="tree" hidden><div class="tbar"><div id="tlines" class="pills"></div><div class="tact"><input id="ts" list="tsl" placeholder="🔍 Find a person…" autocomplete="off"><datalist id="tsl"></datalist><button id="tfocus">◎ Focus on a line</button><button id="texp">⤢ Expand all</button><button id="tcol">⤡ Collapse</button></div></div>
+<div id="tv"><div id="tc"></div></div></div>
+<aside id="tp" hidden><button id="tpx" aria-label="Close">✕</button><div id="tpb"></div><button id="tpa" class="ask">✦ Ask TupperAi about this person</button></aside>
+<div class="zctl"><button id="tzi" title="Zoom in (+)">+</button><button id="tzo" title="Zoom out (−)">−</button><button id="tfit" title="Fit whole tree (0)">⤢</button><button id="thome" title="Center on Dustin (H)">⌂</button></div>
+<div class="mmw"><canvas id="mm"></canvas><div id="mmv"></div>
+<div class="legend"><span><i class="dot confirmed"></i>Confirmed</span><span><i class="dot likely"></i>Likely</span><span><i class="dot speculative"></i>Speculative</span><span class="sep"></span><span class="hint">Drag or flick to pan · Scroll/pinch/double-click to zoom · Arrow keys move · H = home</span><div class="privnote">Birth dates and photos of living family members are hidden for privacy.</div></div></section>
+<main id="chat"><div class="wrap" id="log"></div></main>
+<form id="f"><div class="in"><textarea id="t" rows="1" placeholder="Ask about the Tupper family…"></textarea><button class="send" id="s" aria-label="Send">↑</button></div><div class="foot">Runs privately in your browser · Answers come only from the Tupper family tree · Living relatives' personal details stay private</div></form>
+<script type="module">
+const $=id=>document.getElementById(id),log=$('log'),st=$('status');
+localStorage.removeItem('tupperai_xai_key');
+const SUGG=['Who was Charles Tupper (1748)?','How are we connected to the Planters?','Who was Neil Carman Tupper?','Tell me about the Salsman line','Who was Eliakim Tupper Jr.?'];
+let KB=[];const kbReady=fetch('/knowledge.json').then(r=>r.json()).then(j=>{KB=j;st.textContent+=' · Family knowledge: '+j.length+' people loaded.'}).catch(()=>st.textContent='Could not load family knowledge.');
+const STOP=new Set('who what when where was were is are the a an of and to in did how about tell me my our we us his her their does do family tupper tuppers with from for born died'.split(' '));
+const toks=t=>(t.toLowerCase().match(/[a-z0-9]+/g)||[]).filter(w=>w.length>1&&!STOP.has(w)).map(w=>w.length>4?w.replace(/s$/,''):w);
+const byId={};let ready=false;
+function idx(){if(ready)return;KB.forEach(p=>{byId[p.id]=p;p.kids=[];p.nt=toks(p.name)});KB.forEach(p=>(p.p||[]).forEach(x=>byId[x]&&byId[x].kids.push(p.id)));ready=true}
+function lev(a,b){if(Math.abs(a.length-b.length)>2)return 9;const m=[...Array(b.length+1).keys()];for(let i=1;i<=a.length;i++){let pr=m[0];m[0]=i;for(let j=1;j<=b.length;j++){const t=m[j];m[j]=Math.min(m[j]+1,m[j-1]+1,pr+(a[i-1]===b[j-1]?0:1));pr=t}}return m[b.length]}
+const nm=id=>byId[id]?byId[id].name:id;
+const uniq=a=>[...new Set(a)].filter(Boolean);
+function rel(id){const p=byId[id];if(!p)return'';
+  const par=p.p||[],gp=uniq(par.flatMap(x=>byId[x]?.p||[])),ggp=uniq(gp.flatMap(x=>byId[x]?.p||[]));
+  const sib=uniq(par.flatMap(x=>byId[x]?.kids||[])).filter(x=>x!==id),kids=p.kids,gk=uniq(kids.flatMap(x=>byId[x]?.kids||[]));
+  const au=uniq(gp.flatMap(x=>byId[x]?.kids||[])).filter(x=>!par.includes(x));
+  const L=[['Parents',par],['Grandparents',gp],['Great-grandparents',ggp],['Siblings',sib],['Aunts/uncles',au],['Spouses',p.s||[]],['Children',kids],['Grandchildren',gk]].filter(x=>x[1].length).map(x=>x[0]+': '+x[1].map(nm).join(', '));
+  // ancestor line
+  let line=[p.name],c=p;for(let i=0;i<12;i++){const f=(c.p||[]).map(x=>byId[x]).find(x=>x&&/Tupper|Salsman|Saltzman/.test(x.name))||(c.p||[]).map(x=>byId[x]).find(Boolean);if(!f)break;line.push(f.name);c=f}
+  return 'RELATIONSHIP MAP for '+p.name+':\n'+L.join('\n')+(line.length>2?'\nDirect ancestor line (child → parent → …): '+line.join(' → '):'')}
+function retrieve(q,budget){idx();
+  const qt=toks(q);const years=q.match(/\b1[5-9]\d\d|20\d\d\b/g)||[];
+  const sc=KB.map(p=>{const tx=p.text.toLowerCase();let s=0;
+    for(const w of qt){if(p.nt.includes(w))s+=6;else if(w.length>=5&&p.nt.some(n=>lev(n,w)<=(w.length>7?2:1)))s+=4;else if(tx.includes(w))s+=1}
+    const first=p.text.split('\n').slice(0,3).join(' ');for(const y of years)if(first.includes(y))s+=5;
+    return[s,p]}).filter(x=>x[0]>0).sort((a,b)=>b[0]-a[0]);
+  const picked=[];const add=p=>{if(p&&!picked.includes(p))picked.push(p)};
+  const top=sc.slice(0,4).map(x=>x[1]);top.forEach(add);
+  top.slice(0,2).forEach(p=>[...(p.p||[]),...(p.s||[]),...p.kids].forEach(x=>add(byId[x])));
+  sc.slice(4).forEach(x=>add(x[1]));
+  let out=top.length?rel(top[0].id)+'\n\n':'';if(top[1]&&sc[1][0]>=sc[0][0]-1)out+=rel(top[1].id)+'\n\n';
+  let n=0;for(const p of picked){let t=p.text;if(p===picked[0]&&out.length+t.length>budget)t=t.slice(0,Math.max(1500,budget-out.length));if(p!==picked[0]&&out.length+t.length>budget)continue;out+=t+'\n\n';n++}
+  return{out,n,top:top[0]}}
+let BUDGET=7000;
+function sysPrompt(q){
+  const head="You are TupperAi, a warm and careful family historian for the Tupper family of Nova Scotia and its connected lines (Salsman/Saltzman, Haines, Murphy, Doherty, Morse, Bassett and others). The Tupper line came from New England to Cornwallis Township, Nova Scotia, about 1760 as New England Planters, beginning with Eliakim Tupper Jr. (1711–1761).\n\nRULES:\n1. Answer ONLY using the FAMILY RECORDS below. Use the RELATIONSHIP MAP for questions like grandfather, siblings, cousins, how people are connected.\n2. If the answer is not in the records, say plainly that it isn't in the family tree yet. Never guess or invent names, dates, places or relationships.\n3. PRIVACY for people marked LIVING: you may say their name and how they are related to others (parents, spouse, children, siblings, cousins). You must NEVER give or guess a living person's birth date, birth year, age, address, town or where they live, phone, email, or other personal details; if asked, politely say that personal details of living relatives are kept private.\n4. Be clear and friendly: start with a direct answer, then key facts (born, died, places, spouse, children) as short bullet points. Mention when a fact is only 'likely' rather than confirmed, and name the source when useful.\n\nFAMILY RECORDS:\n";
+  const r=retrieve(q,BUDGET);return head+(r.n?r.out:'(No matching records found for this question.)')}
+let engine=null,busy=false,loaded=null;
+let hist=JSON.parse(localStorage.getItem('tupperai_chat')||'[]');
+const sel=$('model');{const sv=localStorage.getItem('tupperai_model')||'';sel.value=sv.startsWith('grok')?'auto':(sv||'auto')}
+if(!sel.value)sel.selectedIndex=0;
+const save=()=>localStorage.setItem('tupperai_chat',JSON.stringify(hist));
+function add(role,text){const d=document.createElement('div');d.className='msg '+(role==='user'?'user':'bot');d.textContent=text;log.appendChild(d);$('chat').scrollTop=1e9;return d}
+function render(){log.innerHTML='';if(!hist.length)log.innerHTML='<div class="hero"><div class="logo mark">T</div><h2>Tupper<span class="grad">Ai</span></h2><p>Ask anything about the Tupper family: Planter ancestors, the Salsman, Murphy, Haines and Doherty lines, and who everyone was.</p><div class="grid">'+SUGG.map(q=>'<div class="chip">'+q+'</div>').join('')+'</div></div>';hist.forEach(m=>add(m.role,m.content))}
+log.addEventListener('click',e=>{if(e.target.classList.contains('chip')){$('t').value=e.target.textContent;$('f').requestSubmit()}});
+render();
+sel.onchange=()=>{localStorage.setItem('tupperai_model',sel.value);st.textContent='Press Load to download this model.'};
+if(!navigator.gpu){st.textContent='This browser has no WebGPU, so answers come from a direct search of the family records (no AI).';if(0)log.innerHTML='<div class="warn"><b>WebGPU isn\'t available in this browser.</b><br>TupperAi runs the AI on your own device and needs WebGPU. Please use a recent Chrome or Edge on desktop or Android or Safari 26+, and keep hardware acceleration on.</div>';$('load').disabled=true}
+let loading=null;
+async function load(prog){
+  if(loading)return loading;
+  loading=(async()=>{
+  if(!navigator.gpu)return 'Your browser does not support WebGPU, so the AI model cannot run on this device.';
+  let webllm;try{webllm=await import('https://esm.run/@mlc-ai/web-llm@0.2.87')}catch(e){return 'Could not download the AI engine (check your internet connection).'}
+  let id=sel.value;
+  try{const ad=await navigator.gpu.requestAdapter();if(!ad)return 'No WebGPU graphics adapter found (try enabling hardware acceleration in your browser).';if(id==='auto'){const big=ad.limits.maxBufferSize>=2**31&&!/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)&&(navigator.deviceMemory||8)>=8;id=big?'Llama-3.2-3B-Instruct-q4f16_1-MLC':/Mobi|Android|iPhone/i.test(navigator.userAgent)?'Qwen2.5-0.5B-Instruct-q4f16_1-MLC':'Llama-3.2-1B-Instruct-q4f16_1-MLC'}if(!ad.features.has('shader-f16'))id=id.replace('q4f16_1','q4f32_1')}catch(e){return 'WebGPU error: '+e.message}
+  localStorage.setItem('tupperai_model',sel.value);$('load').disabled=true;
+  try{
+    const cb=p=>{const pc=Math.round(p.progress*100);$('fill').style.width=pc+'%';st.textContent='Downloading AI '+pc+'%… (first time only)';prog&&prog(pc)};
+    if(engine){try{await engine.unload()}catch{}engine=null}{for(const tryId of uniq([id,id.includes('0.5B')?'':'Qwen2.5-0.5B-Instruct-'+(id.includes('q4f32')?'q4f32_1':'q4f16_1')+'-MLC'])){try{const ctx=/0.5B|1B/.test(tryId)?4096:8192;BUDGET=ctx>4096?16000:7000;engine=await webllm.CreateMLCEngine(tryId,{initProgressCallback:cb},{context_window_size:ctx});if(tryId!==id)st.textContent='Big model failed, using the small fallback.';break}catch(e){console.warn(e);engine=null;if(tryId.includes('0.5B'))throw e}}}
+    loaded=sel.value;st.textContent='AI ready: '+sel.options[sel.selectedIndex].text;$('fill').style.width='100%';return null;
+  }catch(e){console.error(e);engine=null;loaded=null;st.textContent='AI failed to load.';return 'The AI model failed to load: '+e.message}
+  finally{$('load').disabled=false}
+  })();
+  try{return await loading}finally{loading=null}
+}
+function lookup(q){
+  const r=retrieve(q,30000);const top=r.top;if(top&&top.living&&/\b(born|birth|birthday|age|old|live|lives|address|where|phone|email)\b/i.test(q))return 'Personal details of living relatives (like birthdays, ages and where they live) are kept private. Here is how '+top.name+' fits in the family:\n\n'+top.text.replace(/ — LIVING.*\n?/,'\n').trim();if(!r.n)return "I couldn't find anyone matching that in the Tupper family tree. Try a full name, like \"Neil Carman Tupper\".";
+  return 'From the family tree records:\n\n'+(b=>[b.find(x=>!x.startsWith('RELATIONSHIP')),b.find(x=>x.startsWith('RELATIONSHIP'))].filter(Boolean).join('\n\n'))(r.out.trim().split('\n\n'));
+}
+$('load').onclick=async()=>{const err=await load();if(err)st.textContent=err};
+$('new').onclick=()=>{if(busy)return;hist=[];save();render()};
+$('t').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('f').requestSubmit()}});
+$('t').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=e.target.scrollHeight+'px'});
+$('f').onsubmit=async e=>{e.preventDefault();const q=$('t').value.trim();if(!q)return;if(busy){st.textContent='Please wait, still answering your last question…';return}
+  if(!hist.length)log.innerHTML='';
+  $('t').value='';$('t').style.height='auto';hist.push({role:'user',content:q});add('user',q);save();
+  busy=true;$('s').disabled=true;const d=add('assistant','Thinking…');let out='';
+  try{
+    await kbReady;
+    if(!engine||loaded!==sel.value){
+      d.textContent='Starting the AI…';
+      const err=await load(pc=>{d.textContent='Downloading AI '+pc+'%… (first time only, then it is saved)'});
+      if(err){out='⚠️ '+err+'\n\nHere is what I found by searching the family records directly instead:\n\n'+lookup(q).replace(/^From the family tree records:\n\n/,'');throw null}
+      d.textContent='Thinking…';
+    }
+    const recent=hist.filter(m=>m.role==='user').slice(-2).map(m=>m.content).join(' ');const msgs=[{role:'system',content:sysPrompt(recent)},...hist.slice(BUDGET>7000?-8:-4)];
+    for await(const c of await engine.chat.completions.create({stream:true,messages:msgs})){out+=c.choices[0]?.delta?.content||'';d.textContent=out;$('chat').scrollTop=1e9}
+    if(!out.trim())out=lookup(q);
+  }catch(err){if(err)out='⚠️ The AI hit an error ('+err.message+').\n\n'+lookup(q)}
+  d.textContent=out;hist.push({role:'assistant',content:out});save();busy=false;$('s').disabled=false;$('chat').scrollTop=1e9};
+</script><script src="/tree.js"></script></body></html>
